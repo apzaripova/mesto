@@ -1,0 +1,8 @@
+.pages {
+    max-width: calc(1280px - 2*200px);
+    min-width: 320px;
+    color: white;
+    margin: 0 auto;
+    background-color: #000;
+    box-sizing: border-box;
+}

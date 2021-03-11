@@ -1,0 +1,7 @@
+@import url('../vendor/normalize.css');
+@import url('../script/script.js');
+@import url('../blocks/pages/pages.css');
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__line/header__line.css');
+@import url('../blocks/header/__logo/header__logo.css');
+
