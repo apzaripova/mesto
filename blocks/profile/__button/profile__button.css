@@ -1,0 +1,8 @@
+.profile__button {
+    height: 24px;
+    width: 24px;
+    background-color: #000;
+    border: 1px solid #fff;
+    align-self: center;
+    padding: 0;
+}
