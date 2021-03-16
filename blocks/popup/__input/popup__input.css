@@ -1,0 +1,10 @@
+.popup__input {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    text-align: center;
+    color: #000;
+}
