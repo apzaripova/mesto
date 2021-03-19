@@ -1,4 +1,4 @@
-.element__like {
+.card__button-like {
     background-image: url(../../../images/heart.svg);
     background-size: 22px 19px;
     width: 22px;
@@ -9,7 +9,7 @@
     padding: 0;
 }
 
-.element__like:hover {
+.card__button-like:hover {
     cursor: pointer;
     opacity: 0.5;
     border: none;

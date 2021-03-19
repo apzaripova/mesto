@@ -1,6 +1,4 @@
 .profile__avatar {
-    background-image: url('../../../images/profile__image.jpg');
-    background-size: cover;
     width: 120px;
     height: 120px;
     object-fit: cover;
@@ -8,9 +6,9 @@
     margin-right: 30px;
 }
 
-@media screen and (max-width: 868px) {
+@media screen and (max-width: 826px) {
     .profile__avatar {
+        display: block;
         margin: 0 auto;
-        align-items: center;
     }
 }
