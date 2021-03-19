@@ -7,4 +7,4 @@
 1. JavaScript.
 2. DOM.
 
-### Адрес страницы []
+### Адрес страницы [https://apzaripova.github.io/mesto/]
