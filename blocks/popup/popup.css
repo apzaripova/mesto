@@ -1,8 +1,11 @@
 .popup {
-    width: 100vh;
-    height: 100vw;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, .5);
-    display: flex;
+    position: fixed;
+    display: none;
     justify-content: center;
     align-items: center;
+    left: 0;
+    top: 0;
 }

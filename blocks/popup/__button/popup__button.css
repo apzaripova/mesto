@@ -3,11 +3,25 @@
     height: 50px;
     border: none;
     background-color: #000;
-    margin: 48px auto;
-    padding: 0;
+    margin: 48px 0 37px;
     color: #fff;
-    text-align: center;
     border-radius: 2px;
     font-size: 18px;
     line-height: 22px;
+    padding: 0;
+}
+
+.popup__button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 419px) {
+    .popup__button {
+        width: 238px;
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
 }

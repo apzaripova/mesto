@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script src="./script/script.js"></script>
+    <script src="./script/index.js" defer></script>
 </head>
 
 <body class="pages">
@@ -74,28 +74,27 @@
             <li class="element__card">
                 <img class="element__photo" src="images/karachaevsk.png" alt="Карачаевск">
                 <div class="element__info">
-                    <p class="element__name">Карачаевск</p>
+                    <p class="element__name">Карачаево-Черкессия</p>
                     <button class="element__like"></button>
                 </div>
             </li>
         </ul>
-    </section>
-
-    <section class="popup">
-        <div class="popup__container">
-                <a class="popup__close"><img class="popup__icon" src="images/close__icon.png"></a>
-                <h2 class="popup__profile">Редактировать профиль</h2>
-                <input class="popup__input" type="text" placeholder="Имя">
-                <input class="popup__input" type="text" placeholder="О себе">
-                <button class="popup__button">Сохранить</button>
-        </div>
-
     </section>
     </main>
 
     <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-</body>
 
+    <section class="popup">
+        <div class="popup__container">
+                <a class="popup__close" href="#" targer="_self"><img class="popup__icon" src="images/close__icon.png"></a>
+                <h2 class="popup__profile">Редактировать профиль</h2>
+                <input class="popup__input popup_name" type="text" value="Имя">
+                <input class="popup__input popup_job" type="text" value="О себе">
+                <button class="popup__button" type="submit">Сохранить</button>
+        </div>
+
+    </section>
+</body>
 </html>
