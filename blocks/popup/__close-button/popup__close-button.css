@@ -17,3 +17,19 @@
     border: none;
 }
 
+@media screen and (max-width: 579px) {
+    .popup__close-button {
+        top: -50px;
+        right: -360px;
+    }
+}
+
+
+
+@media screen and (max-width: 472px) {
+    .popup__close-button {
+        width: 26px;
+        height: 26px;
+        right: -233px
+    }
+}

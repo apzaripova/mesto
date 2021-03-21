@@ -1,4 +1,4 @@
-.pages {
+.page {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     max-width: calc(1280px - 2*200px);
     min-width: 320px;
@@ -9,25 +9,25 @@
 }
 
 @media screen and (max-width: 1279px) {
-    .pages {
+    .page {
         width: calc(100% - 2*100px);
     }
 }
 
 @media screen and (max-width: 930px) {
-    .pages {
+    .page {
         width: calc(100% - 2*70px);
     }
 }
 
 @media screen and (max-width: 614px) {
-    .pages {
+    .page {
         width: calc(100% - 2*40px);
     }
 }
 
 @media screen and (max-width: 419px) {
-    .pages {
+    .page {
         width: 100%;
     }
 }

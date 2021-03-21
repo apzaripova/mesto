@@ -1,19 +1,5 @@
 .card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 282px));
-    grid-template-rows: repeat(2, 361px);
-    column-gap: 17px;
-    row-gap: 20px;
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-
-
-@media screen and (max-width: 419px) {
-    .card {
-        grid-template-columns: 282px;
-        margin-left: 19px;
-    }
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
 }
