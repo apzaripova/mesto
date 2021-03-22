@@ -5,7 +5,7 @@ let popupInputTypeJob = document.querySelector('.popup__input_type_job');
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 let popupForm = document.querySelector('.popup__form');
-let popupCloseButton = documnet.querySelector('.popup__close-button');
+let popupCloseButton = document.querySelector('.popup__close-button');
 
 function openPopup() {
     popupInputTypeName.value = profileName.textContent;
