@@ -31,48 +31,18 @@
 
         <section class="cards">
             <ul class="cards__list">
-                <li class="card">
-                    <img class="card__photo" src="images/karachaevsk.png" alt="Карачаевск">
-                    <div class="card__info">
-                        <h2 class="card__title">Карачаевск</h2>
-                        <button class="card__button-like" type="button" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__photo" src="images/elbrus.png" alt="Эльбрус">
-                    <div class="card__info">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button class="card__button-like" type="button" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__photo" src="images/dombay.png" alt="Домбай">
-                    <div class="card__info">
-                        <h2 class="card__title">Домбай</h2>
-                        <button class="card__button-like" type="button" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__photo" src="images/elbrus.png" alt="Эльбрус">
-                    <div class="card__info">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button class="card__button-like" type="button" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__photo" src="images/dombay.png" alt="Домбай">
-                    <div class="card__info">
-                        <h2 class="card__title">Домбай</h2>
-                        <button class="card__button-like" type="button" aria-label="Лайк"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <img class="card__photo" src="images/karachaevsk.png" alt="Карачаевск">
-                    <div class="card__info">
-                        <h2 class="card__title">Карачаево-Черкессия</h2>
-                        <button class="card__button-like" type="button" aria-label="Лайк"></button>
-                    </div>
-                </li>
+                <template class="card-template">
+                    <li class="card">
+                        <div class="card__container">
+                            <img class="card__photo" src="" alt="">
+                            <button class="card__button-delete"></button>
+                        </div>
+                        <div class="card__info">
+                            <h2 class="card__title"></h2>
+                            <button class="card__button-like" type="button" aria-label="Лайк"></button>
+                        </div>
+                    </li>
+                </template>
             </ul>
         </section>
     </main>
@@ -91,7 +61,28 @@
                 <button class="popup__button" type="submit">Сохранить</button>
             </form>
         </div>
+    </article>
 
+    <article class="popup popup-add">
+        <div class="popup__container">
+            <button class="popup__close-button popup__close-button_img" type="button" aria-label="Закрыть добавление карточки"></button>
+            <h2 class="popup__profile">Новое место</h2>
+            <form class="popup__form" name="addnewcard">
+                <input class="popup__input popup__input_type_title" type="text" placeholder="Название" name="title">
+                <input class="popup__input popup__input_type_link" type="text" placeholder="Ссылка на картинку" name="linktopicture">
+                <button class="popup__button" type="submit">Создать</button>
+            </form>
+        </div>
+    </article>
+
+    <article class="popup popup-opened">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button" aria-label="Закрыть открытие карточки"></button>
+            <form class="popup__form" name="addnewcard">
+                <input class="popup__input popup-opened__image" type="image" name="title">
+                <input class="popup__input popup-opened__title" type="text"  name="linktopicture">
+            </form>
+        </div>
     </article>
     <script src="./scripts/index.js" defer></script>
 </body>
