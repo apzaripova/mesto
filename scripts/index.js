@@ -10,7 +10,7 @@ let popupInfo = document.querySelector('#popupInfo');
 let popupCard = document.querySelector('#popupCard');
 let popupCloseButton = document.querySelector('.popup__close-button');
 let popupCloseButtonAdd = document.querySelector('.popup__close-button_add');
-let popupCloseButtonImg = document.querySelector('.popup__close-button-img');
+let popupCloseImg = document.querySelector('.popup__close-img');
 let profileAddButton = document.querySelector('.profile__add-button');
 let popupInputTypeTitle = document.querySelector('.popup__input_type_title');
 let popupInputTypeLink = document.querySelector('.popup__input_type_link');
@@ -98,7 +98,7 @@ profileButtonEdit.addEventListener('click', openUserPopup);
 popupCloseButton.addEventListener('click', () => {closePopup(popupUser)});
 profileAddButton.addEventListener('click', () => {openPopup(popupAdd)});
 popupCloseButtonAdd.addEventListener('click', () => {closePopup(popupAdd)});
-popupCloseButtonImg.addEventListener('click', () => {closePopup(popupImage)});
+popupCloseImg.addEventListener('click', () => {closePopup(popupImage)});
 
 
 

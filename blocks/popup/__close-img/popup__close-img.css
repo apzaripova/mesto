@@ -1,4 +1,4 @@
-.popup__close-button-img {
+.popup__close-img {
     background-image: url('../../../../images/close__icon.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -11,7 +11,7 @@
     right: -850px;
 }
 
-.popup__close-button-img:hover {
+.popup__close-img:hover {
     opacity: 0.6;
     cursor: pointer;
     border: none;
