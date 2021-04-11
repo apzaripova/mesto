@@ -57,9 +57,9 @@ const popupFigcaption = document.querySelector('.popup__figcaption');
       e.preventDefault()
       const item = {name: popupInputTypeTitle.value, link: popupInputTypeLink.value};
       addCard(item);
-      closePopup(popupAdd);
+      closePopup(popupTypeNewCard);
       popupInputTypeTitle.value = '';
-      popupInputTypeLink.va = '';
+      popupInputTypeLink.value = '';
   }
 
 function openImgPopup(item) {
