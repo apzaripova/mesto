@@ -1,3 +1,5 @@
+const popup = document.querySelector('.popup');
+const popupContainer = document.querySelector('.popup__container');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
 const popupTypeImage = document.querySelector('.popup_type_image');
@@ -16,6 +18,7 @@ const popupInputTypeTitle = document.querySelector('.popup__input_type_title');
 const popupInputTypeLink = document.querySelector('.popup__input_type_link');
 const popupPicture = document.querySelector('.popup__picture');
 const popupFigcaption = document.querySelector('.popup__figcaption');
+const newCard = document.querySelector('#new-card');
 
   const cardsList = document.querySelector('.cards__list');
   const cardTemplate = document.querySelector('.card-template').content.querySelector('.card')
@@ -62,15 +65,17 @@ const popupFigcaption = document.querySelector('.popup__figcaption');
       popupInputTypeLink.value = '';
   }
 
-function openImgPopup(item) {
+function openImgPopup(item) { //открытие попапа редактирования профиля
   popupPicture.src = item.link;
   popupPicture.alt = item.name;
   popupFigcaption.textContent = item.name;
   openPopup(popupTypeImage);
 }
 
-  function openPopup(popup) {
+  function openPopup(popup) { //фукнкция открытия
     popup.classList.add('popup_active');
+
+    popup.addEventListener('keyup', closePopupEscape);
   }
 
 function openUserPopup() {
@@ -79,8 +84,10 @@ function openUserPopup() {
     openPopup(popupTypeEdit);
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_active'); 
+function closePopup(popup) { //функция закрытия
+  popup.classList.remove('popup_active');
+
+  popup.removeEventListener('keyup', closePopupEscape);
 }
 
 
@@ -91,6 +98,18 @@ function formSubmitHandler (evt) {
     closePopup(popupTypeEdit);
 }
 
+function closePopupClick(evt) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
+    closePopup(popup);
+  }
+};
+
+function closePopupEscape(evt) {
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
+}
+
 popupInfo.addEventListener('submit', formSubmitHandler);
 popupCard.addEventListener('submit', formSubmitHandlerAdd);
 profileButtonEdit.addEventListener('click', openUserPopup);
@@ -98,6 +117,7 @@ popupCloseButton.addEventListener('click', () => closePopup(popupTypeEdit));
 profileAddButton.addEventListener('click', () => openPopup(popupTypeNewCard));
 closeCard.addEventListener('click', () => closePopup(popupTypeNewCard));
 closeImage.addEventListener('click', () => closePopup(popupTypeImage));
+popup.addEventListener('click', closePopupClick);
 
 
 

@@ -51,31 +51,43 @@
         <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
 
-    <article class="popup popup_type_edit">
+    <article class="popup popup_type_edit" id="profile-edit">
         <div class="popup__container">
             <button class="popup__close-button" type="button" aria-label="Закрыть редактирование"></button>
             <h2 class="popup__profile">Редактировать профиль</h2>
-            <form class="popup__form" id="popupInfo" name="aboutuser">
-                <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" name="firstname">
-                <input class="popup__input popup__input_type_job" type="text" placeholder="О себе" name="job">
+            <form class="popup-form" id="popupInfo" name="aboutuser" novalidate>
+                <label class="popup-form__field">
+                    <input class="popup__input popup__input_type_name" id="input-name" type="text" placeholder="Имя" name="firstname" minlength="2" maxlength="40" required>
+                    <span class="popup__input-error input-name-error"></span>
+                </label>
+                <label class="popup-form__field">
+                    <input class="popup__input popup__input_type_job" id="input-job" type="text" placeholder="О себе" name="job" minlength="2" maxlength="200" required>
+                    <span class="popup__input-error input-job-error"></span>
+                </label>
                 <button class="popup__button" type="submit">Сохранить</button>
             </form>
         </div>
     </article>
 
-    <article class="popup popup_type_new-card">
+    <article class="popup popup_type_new-card" id="new-card">
         <div class="popup__container">
             <button class="popup__close-button" id="closeCard" type="button" aria-label="Закрыть добавление карточки"></button>
             <h2 class="popup__profile">Новое место</h2>
-            <form class="popup__form" id="popupCard" name="addnewcard">
-                <input class="popup__input popup__input_type_title" type="text" placeholder="Название" name="title">
-                <input class="popup__input popup__input_type_link" type="text" placeholder="Ссылка на картинку" name="linktopicture">
+            <form class="popup-form" id="popupCard" name="addnewcard" novalidate>
+                <label class="popup-form__field">
+                    <input class="popup__input popup__input_type_title" id="input-title" type="text" placeholder="Название" name="title" minlength="2" maxlength="30" required>
+                    <span class="popup__input-error input-title-error"></span>
+                </label>
+                <label class="popup-form__field">
+                    <input class="popup__input popup__input_type_link" id="input-link" type="url" placeholder="Ссылка на картинку" name="linktopicture" required>
+                    <span class="popup__input-error input-link-error"></span>
+                </label>
                 <button class="popup__button popup__create" type="submit">Создать</button>
             </form>
         </div>
     </article>
 
-    <article class="popup popup_type_image">
+    <article class="popup popup_type_image" id="open-image">
         <div class="popup__container popup__container_image">
             <button class="popup__close-button" id="closeImage" type="button" aria-label="Закрыть открытие карточки"></button>
             <img class="popup__picture" src="#" alt="картинка">
@@ -84,6 +96,7 @@
     </article>
     <script src="./scripts/index.js" defer></script>
     <script src="./scripts/initial-cards.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
