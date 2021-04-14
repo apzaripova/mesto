@@ -16,9 +16,6 @@
     cursor: pointer;
 }
 
-.popup__button:disabled {
-    opacity: 0.2;
-}
 
 @media screen and (max-width: 479px) {
     .popup__button {
