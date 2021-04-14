@@ -1,16 +1,16 @@
 const formSelector = document.querySelector('.popup-form');
 const inputSelector = formSelector.querySelector('.popup__input');
-const formError = formSelector.querySelector(`.${inputSelector.id}-error`);
+const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`); 
 const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled');
 
-const showInputErrror = (formSelector, inputSelector, errorMessage) => { //функция добавляет класс с ошибкой
+const showInputError = (formSelector, inputSelector, errorMessage) => { //функция добавляет класс с ошибкой
     const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`); 
     inputSelector.classList.add('popup__input_type_error');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__input_type_error_active');
 };
 
-const hideInputErrror = (formSelector, inputSelector) => { //функция удаляет класс с ошибкой
+const hideInputError = (formSelector, inputSelector) => { //функция удаляет класс с ошибкой
     const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`); 
     inputSelector.classList.remove('popup__input_type_error');
     errorElement.classList.remove('popup__input_type_error_active');
@@ -19,9 +19,9 @@ const hideInputErrror = (formSelector, inputSelector) => { //функция уд
 
 const isValid = (formSelector, inputSelector) => { //функция, которая проверяет валидность формы
     if (!inputSelector.validity.valid) {
-        showInputErrror(formSelector, inputSelector, inputSelector.validationMessage);
+        showInputError(formSelector, inputSelector, inputSelector.validationMessage);
     } else {
-        hideInputErrror(formSelector, inputSelector);
+        hideInputError(formSelector, inputSelector);
     }
 };
 
@@ -37,15 +37,15 @@ const setEventListeners = (formSelector) => { // функция добавлен
     });
 };
 
-const enableValidation = () => { // функция добавления обработчиков всем формам
-    const formList = Array.from(document.querySelectorAll('.form'));
+const enableValidation = ({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) => { // функция добавления обработчиков всем формам
+    const formList = Array.from(document.querySelectorAll(formSelector));
 
     formList.forEach((formSelector) => {
         formSelector.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
         
-        setEventListeners(formSelector);
+        setEventListeners(formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass);
     });
 };
 
@@ -63,4 +63,11 @@ const toggleButtonState = (inputList, submitButtonSelector) => {
     }
 };
 
-enableValidation();
+enableValidation({
+    formSelector: '.popup-form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  }); 
