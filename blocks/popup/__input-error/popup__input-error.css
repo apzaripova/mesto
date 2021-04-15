@@ -3,5 +3,7 @@
     line-height: 15px;
     color: #FF0000;
     position: absolute;
-    top: calc(100% - 190px);
+    bottom: 15px;
+    margin: 0;
+    padding: 0;
 }

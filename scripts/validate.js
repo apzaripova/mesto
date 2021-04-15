@@ -2,13 +2,12 @@ const formSelector = document.querySelector('.popup-form');
 const inputSelector = formSelector.querySelector('.popup__input');
 const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
 const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled');
-const errorClass = formSelector.querySelector('.popup__input_type_error-active');
 
 const showInputError = (formSelector, inputSelector, errorMessage, inputErrorClass, errorClass) => { //функция добавляет класс с ошибкой
     const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`); 
     inputSelector.classList.add(inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(errorClass);
+    errorElement.classList.add('.popup__input_type_error-active');
 };
 
 const hideInputError = (formSelector, inputSelector, inputErrorClass, errorClass) => { //функция удаляет класс с ошибкой

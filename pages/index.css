@@ -48,7 +48,7 @@
 @import url('../blocks/popup/__input/_type/_error/popup__input_type_error.css');
 @import url('../blocks/popup/__input/_type/_error/_active/popup__input_type_error_active.css');
 @import url('../blocks/popup-form/popup-form.css');
-@import url('../blocks/popup-form/__set/popup-form__set.css');
+@import url('../blocks/popup-form/__field/popup-form__field.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
 
