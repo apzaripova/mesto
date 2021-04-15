@@ -76,17 +76,17 @@ function formSubmitHandler (evt) {
     closePopup(popupTypeEdit);
 }
 
-function closePopupClick(evt) {
+function closePopupClick(evt, popup) {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
     closePopup(popup);
   }
 };
 
-function closePopupEscape(evt) {
+function closePopupEscape(evt, popup) {
   if (evt.key === "Escape") {
     closePopup(popup);
   }
-}
+};
 
 popupInfo.addEventListener('submit', formSubmitHandler);
 popupCard.addEventListener('submit', formSubmitHandlerAdd);
@@ -95,8 +95,12 @@ popupCloseButton.addEventListener('click', () => closePopup(popupTypeEdit));
 profileAddButton.addEventListener('click', () => openPopup(popupTypeNewCard));
 closeCard.addEventListener('click', () => closePopup(popupTypeNewCard));
 closeImage.addEventListener('click', () => closePopup(popupTypeImage));
-popup.addEventListener('click', closePopupClick);
-
+popupTypeEdit.addEventListener('click', (evt) => closePopupClick(evt, popupTypeEdit));
+popupTypeNewCard.addEventListener('click', (evt) => closePopupClick(evt, popupTypeNewCard));
+popupTypeImage.addEventListener('click', (evt) => closePopupClick(evt, popupTypeImage));
+popupTypeEdit.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeEdit));
+popupTypeNewCard.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeNewCard));
+popupTypeImage.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeImage));
 
 
 

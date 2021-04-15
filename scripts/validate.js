@@ -2,9 +2,9 @@ const formSelector = document.querySelector('.popup-form');
 const inputSelector = formSelector.querySelector('.popup__input');
 const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
 const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled');
-const errorClass = formSelector.querySelector('.popup__input_type_error_active');
+const errorClass = formSelector.querySelector('.popup__input_type_error-active');
 
-const showInputError = (formSelector, inputSelector, errorMessage, inputErrorClass) => { //функция добавляет класс с ошибкой
+const showInputError = (formSelector, inputSelector, errorMessage, inputErrorClass, errorClass) => { //функция добавляет класс с ошибкой
     const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`); 
     inputSelector.classList.add(inputErrorClass);
     errorElement.textContent = errorMessage;
@@ -72,5 +72,5 @@ enableValidation({
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input_type_error_active'
+    errorClass: 'popup__input_type_error-active'
   }); 
