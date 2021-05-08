@@ -1,5 +1,5 @@
- import Card from './card.js';
- import {initialCards} from './initial-cards.js';
+ import Card from './Сard.js';
+ import { initialCards, enableValidation } from './initial-cards.js';
 
 const popup = document.querySelector('.popup');
 const popupContainer = document.querySelector('.popup__container');
@@ -22,6 +22,12 @@ const popupInputTypeLink = document.querySelector('.popup__input_type_link');
 const popupPicture = document.querySelector('.popup__picture');
 const popupFigcaption = document.querySelector('.popup__figcaption');
 const cardsList = document.querySelector('.cards__list');
+const formSelector = document.querySelector('.popup-form');
+const inputSelector = formSelector.querySelector('.popup__input');
+const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
+const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled');
+
+
 
 
 function createCard(name, link) {
@@ -33,6 +39,11 @@ initialCards.forEach(item => {
     cardsList.append(createCard(item.name, item.link));
 });
 
+
+function addCard(item) {
+  const card = createCard(item);
+  cardsList.prepend(card);
+}
 
   const formSubmitHandlerAdd = e => { //создание карточки через попап
       e.preventDefault()
@@ -53,7 +64,7 @@ export function openImgPopup(link, name) { //открытие попапа ре�
 function openPopup(popup) { //фукнкция открытия
     popup.classList.add('popup_active');
 
-    popup.addEventListener('keyup', closePopupEscape);
+    document.addEventListener('keydown', closePopupEscape);
   }
 
 function openUserPopup() {
@@ -65,7 +76,7 @@ function openUserPopup() {
 function closePopup(popup) { //функция закрытия
   popup.classList.remove('popup_active');
 
-  popup.removeEventListener('keyup', closePopupEscape);
+  document.removeEventListener('keydown', closePopupEscape);
 }
 
 
@@ -84,7 +95,8 @@ function closePopupClick(evt, popup) {
 
 function closePopupEscape(evt, popup) {
   if (evt.key === "Escape") {
-    closePopup(popup);
+    const popupActive = document.querySelector('.popup_active');
+    closePopup(popupActive);
   }
 };
 
