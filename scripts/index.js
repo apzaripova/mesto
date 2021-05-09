@@ -1,5 +1,5 @@
  import Card from './Сard.js';
- import { initialCards, enableValidation } from './initial-cards.js';
+ import { initialCards } from './initial-cards.js';
 
 const popup = document.querySelector('.popup');
 const popupContainer = document.querySelector('.popup__container');
@@ -26,6 +26,9 @@ const formSelector = document.querySelector('.popup-form');
 const inputSelector = formSelector.querySelector('.popup__input');
 const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
 const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled');
+const cardButtonLike = document.querySelector('.card__button-like');
+const cardButtonDelete = document.querySelector('.card__button-delete');
+const cardPhoto = document.querySelector('.card__photo');
 
 
 
@@ -41,7 +44,7 @@ initialCards.forEach(item => {
 
 
 function addCard(item) {
-  const card = createCard(item);
+  const card = createCard(item.name, item.link);
   cardsList.prepend(card);
 }
 
@@ -93,7 +96,7 @@ function closePopupClick(evt, popup) {
   }
 };
 
-function closePopupEscape(evt, popup) {
+function closePopupEscape(evt) {
   if (evt.key === "Escape") {
     const popupActive = document.querySelector('.popup_active');
     closePopup(popupActive);
@@ -113,8 +116,5 @@ popupTypeImage.addEventListener('click', (evt) => closePopupClick(evt, popupType
 popupTypeEdit.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeEdit));
 popupTypeNewCard.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeNewCard));
 popupTypeImage.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeImage));
-
-
-
 
 
