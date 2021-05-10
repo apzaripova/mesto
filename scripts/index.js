@@ -1,5 +1,6 @@
  import Card from './Сard.js';
  import { initialCards } from './initial-cards.js';
+ import FormValidator from './FormValidator.js';
 
 const popup = document.querySelector('.popup');
 const popupContainer = document.querySelector('.popup__container');
@@ -11,8 +12,8 @@ const popupInputTypeName = document.querySelector('.popup__input_type_name');
 const popupInputTypeJob = document.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-const popupInfo = document.querySelector('#popupInfo');
-const popupCard = document.querySelector('#popupCard');
+const popupInfo = document.querySelector('#profileEdit');
+const popupCard = document.querySelector('#newCard');
 const popupCloseButton = document.querySelector('.popup__close-button');
 const closeCard = document.querySelector('#closeCard')
 const closeImage = document.querySelector('#closeImage');
@@ -29,8 +30,14 @@ const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled'
 const cardButtonLike = document.querySelector('.card__button-like');
 const cardButtonDelete = document.querySelector('.card__button-delete');
 const cardPhoto = document.querySelector('.card__photo');
-
-
+const enableValidation = {
+  formSelector: '.popup-form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input_type_error_active'
+};
 
 
 function createCard(name, link) {
@@ -67,7 +74,7 @@ export function openImgPopup(link, name) { //открытие попапа ре�
 function openPopup(popup) { //фукнкция открытия
     popup.classList.add('popup_active');
 
-    document.addEventListener('keydown', closePopupEscape);
+    document.addEventListener('keyup', closePopupEscape);
   }
 
 function openUserPopup() {
@@ -78,8 +85,7 @@ function openUserPopup() {
 
 function closePopup(popup) { //функция закрытия
   popup.classList.remove('popup_active');
-
-  document.removeEventListener('keydown', closePopupEscape);
+  document.removeEventListener('keyup', closePopupEscape);
 }
 
 
@@ -117,4 +123,9 @@ popupTypeEdit.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTy
 popupTypeNewCard.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeNewCard));
 popupTypeImage.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeImage));
 
+const editFormValidation = new FormValidator(enableValidation, popupInfo);
+editFormValidation.enableValidation();
+
+const pictureFormValidation = new FormValidator(enableValidation, popupCard);
+pictureFormValidation.enableValidation();
 
