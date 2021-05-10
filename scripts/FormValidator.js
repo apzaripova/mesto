@@ -34,7 +34,7 @@ export default class FormValidator {
         errorElement.textContent = " ";
     }
 
-    hasInvalidInput = () => { //проверка невалидности поля 
+    resetValidation = () => { //проверка невалидности поля 
         this._inputList.forEach(inputSelector => {
             this._hideInputError(inputSelector)
         })

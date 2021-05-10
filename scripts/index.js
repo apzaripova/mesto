@@ -112,16 +112,10 @@ function closePopupEscape(evt) {
 popupInfo.addEventListener('submit', formSubmitHandler);
 popupCard.addEventListener('submit', formSubmitHandlerAdd);
 profileButtonEdit.addEventListener('click', openUserPopup);
-popupCloseButton.addEventListener('click', () => closePopup(popupTypeEdit));
 profileAddButton.addEventListener('click', () => openPopup(popupTypeNewCard));
-closeCard.addEventListener('click', () => closePopup(popupTypeNewCard));
-closeImage.addEventListener('click', () => closePopup(popupTypeImage));
 popupTypeEdit.addEventListener('click', (evt) => closePopupClick(evt, popupTypeEdit));
 popupTypeNewCard.addEventListener('click', (evt) => closePopupClick(evt, popupTypeNewCard));
 popupTypeImage.addEventListener('click', (evt) => closePopupClick(evt, popupTypeImage));
-popupTypeEdit.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeEdit));
-popupTypeNewCard.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeNewCard));
-popupTypeImage.addEventListener('keydown', (evt) => closePopupEscape(evt, popupTypeImage));
 
 const editFormValidation = new FormValidator(enableValidation, popupInfo);
 editFormValidation.enableValidation();
