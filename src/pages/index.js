@@ -1,6 +1,7 @@
- import Card from './Сard.js';
- import { initialCards } from './initial-cards.js';
- import FormValidator from './FormValidator.js';
+ import './index.css';
+ import Card from '../components/Card.js';
+ import { initialCards } from '../utils/initial-cards.js';
+ import FormValidator from '../components/FormValidator.js';
 
 const popup = document.querySelector('.popup');
 const popupContainer = document.querySelector('.popup__container');
