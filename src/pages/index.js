@@ -78,15 +78,18 @@ const popupWithImage = new PopupWithImage('.popup_type_image');
 popupWithImage.setEventListeners();
 
 
-const userInfo = new UserInfo('.profile__name', '.profile__desctiption');
+const userInfo = new UserInfo('.profile__name', '.profile__description');
 
-const addCardPopup = new PopupWithForm('.popup_type_new-card', (item) => {
-  createCard(item);
+const addCardPopup = new PopupWithForm('.popup_type_new-card', (values) => {
+  const card = createCard({name: values.title, link: values.linktopicture});
+
+  cardsList.append(card);
   addCardPopup.close();
 });
 
-const editProfilePopup = new PopupWithForm('.popup_type_edit', (popupInputTypeName, popupInputTypeJob) => {
-  userInfo.setUserInfo(popupInputTypeName.value, popupInputTypeJob.value);
+const editProfilePopup = new PopupWithForm('.popup_type_edit', (values) => {
+  console.log(values);
+  userInfo.setUserInfo({firstname: values.popupInputTypeName, job: values.popupInputTypeJob});
   editProfilePopup.close();
 });
 
