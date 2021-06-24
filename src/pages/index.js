@@ -89,7 +89,7 @@ const addCardPopup = new PopupWithForm('.popup_type_new-card', (values) => {
 
 const editProfilePopup = new PopupWithForm('.popup_type_edit', (values) => {
   console.log(values);
-  userInfo.setUserInfo({firstname: values.popupInputTypeName, job: values.popupInputTypeJob});
+  userInfo.setUserInfo(values.firstname, values.job);
   editProfilePopup.close();
 });
 
