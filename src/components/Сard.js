@@ -1,11 +1,9 @@
-import {openImgPopup} from '../pages/index.js';
-
 export default class Card {
-    constructor({name, link}, cardSelector) {
-        this._name = name;
-        this._link = link;
+    constructor(item, cardSelector, handleCardClick) {
+        this._name = item.name;
+        this._link = item.link;
         this._cardSelector = cardSelector;
-        
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -38,8 +36,9 @@ export default class Card {
 
         this._element.querySelector('.card__button-delete').addEventListener('click', this._deleteCardClick);
 
-        this._element.querySelector('.card__photo').addEventListener('click', () => {
-            openImgPopup(this._link, this._name);
+
+        this._element.querySelector('.card__photo').addEventListener('click', () => { 
+            this._handleCardClick();
         });
 }
 }
