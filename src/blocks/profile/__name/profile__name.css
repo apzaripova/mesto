@@ -6,6 +6,9 @@
     margin-bottom: 16px;
     margin-top: 22px;
     max-width: 294px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 

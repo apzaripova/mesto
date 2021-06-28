@@ -61,6 +61,7 @@ function createCard(item) { // функция добавления новой к
 
     popupWithImage.open();
   });
+  
   return card.generateCard();
 };
 
@@ -83,7 +84,7 @@ const userInfo = new UserInfo('.profile__name', '.profile__description');
 const addCardPopup = new PopupWithForm('.popup_type_new-card', (values) => {
   const card = createCard({name: values.title, link: values.linktopicture});
 
-  cardsList.append(card);
+  cardsList.prepend(card);
   addCardPopup.close();
 });
 
@@ -100,11 +101,13 @@ profileButtonEdit.addEventListener('click', () => {
 
   editProfilePopup.open();
   editFormValidation.enableValidation();
+  editFormValidation.resetValidation();
 })
 
 profileAddButton.addEventListener('click', () => {
   addCardPopup.open();
   pictureFormValidation.enableValidation();
+  pictureFormValidation.resetValidation();
 })
 
 editProfilePopup.setEventListeners();

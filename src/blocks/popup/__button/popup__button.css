@@ -18,6 +18,14 @@
 
 }
 
+.popup__button:disabled {
+    opacity: 0.2;
+    border: 1px solid #000000;
+    background-color: #FFF;
+    color: rgba(0, 0, 0, 1);
+    cursor: auto;
+}
+
 
 @media screen and (max-width: 479px) {
     .popup__button {
