@@ -8,7 +8,6 @@
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
-
 }
 
 @media screen and (max-width: 472px) {
@@ -16,6 +15,5 @@
         max-width: 260px;
         min-height: 297px;
         padding: 25px 22px 0;
-        top: 8%;
     }
 }
