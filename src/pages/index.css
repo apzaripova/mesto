@@ -50,5 +50,7 @@
 @import url('../blocks/popup-form/__field/popup-form__field.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
-
-
+@import url('../blocks/profile/__avatar-button/profile__avatar-button.css');
+@import url('../blocks/profile/__avatar-container/profile__avatar-container.css');
+@import url('../blocks/card/__count-like/card__count-like.css');
+@import url('../blocks/card/__container-like/card__container-like.css');

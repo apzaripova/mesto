@@ -30,6 +30,10 @@ export default class Card {
         this._element.querySelector('.card__button-like').classList.toggle('card__button-like_active');
     }
 
+    setLikeCount(data) {
+        this._element.querySelector('.card__count-like').textContent = String(data.likes.length);
+      }
+
 
     _setEventListeners() {
         this._element.querySelector('.card__button-like').addEventListener('click', this._handleLikeClick);

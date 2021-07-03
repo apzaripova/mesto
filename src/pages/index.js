@@ -7,12 +7,10 @@
  import PopupWithImage from '../components/PopupWithImage.js';
  import PopupWithForm from '../components/PopupWithForm.js';
  import UserInfo from '../components/UserInfo.js';
+ import Api from '../components/Api.js';
+ import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 const popup = document.querySelector('.popup');
-const popupContainer = document.querySelector('.popup__container');
-const popupTypeEdit = document.querySelector('.popup_type_edit');
-const popupTypeNewCard = document.querySelector('.popup_type_new-card');
-const popupTypeImage = document.querySelector('.popup_type_image');
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const popupInputTypeName = document.querySelector('.popup__input_type_name');
 const popupInputTypeJob = document.querySelector('.popup__input_type_job');
@@ -36,6 +34,7 @@ const inactiveButtonClass = formSelector.querySelector('.popup__button_disabled'
 const cardButtonLike = document.querySelector('.card__button-like');
 const cardButtonDelete = document.querySelector('.card__button-delete');
 const cardPhoto = document.querySelector('.card__photo');
+const profileAvatarButton = document.querySelector('.profile__avatar-button');
 const enableValidation = {
   formSelector: '.popup-form',
   inputSelector: '.popup__input',
@@ -44,6 +43,14 @@ const enableValidation = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input_type_error_active'
 };
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-25',
+  headers: {
+  authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',
+    'Content-Type': 'application/json'
+  }
+});
 
 // валидация формы
 
@@ -83,7 +90,7 @@ const userInfo = new UserInfo('.profile__name', '.profile__description');
 
 const addCardPopup = new PopupWithForm('.popup_type_new-card', (values) => {
   const card = createCard({name: values.title, link: values.linktopicture});
-
+  addCardPopup.renderLoading(false);
   cardsList.prepend(card);
   addCardPopup.close();
 });
@@ -91,8 +98,11 @@ const addCardPopup = new PopupWithForm('.popup_type_new-card', (values) => {
 const editProfilePopup = new PopupWithForm('.popup_type_edit', (values) => {
   console.log(values);
   userInfo.setUserInfo(values.firstname, values.job);
+  editProfilePopup.renderLoading(false);
   editProfilePopup.close();
 });
+
+const updateAvatarPopup = new PopupWithForm('.popup_confirm');
 
 
 profileButtonEdit.addEventListener('click', () => {
@@ -108,6 +118,10 @@ profileAddButton.addEventListener('click', () => {
   addCardPopup.open();
   pictureFormValidation.enableValidation();
   pictureFormValidation.resetValidation();
+})
+
+profileAvatarButton.addEventListener('click', () => {
+  updateAvatarPopup.open();
 })
 
 editProfilePopup.setEventListeners();
