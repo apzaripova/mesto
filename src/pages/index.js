@@ -1,9 +1,7 @@
  import './index.css';
  import Card from '../components/Сard.js';
  import Section from '../components/Section.js';
- import { initialCards } from '../utils/constants.js';
  import FormValidator from '../components/FormValidator.js';
- import Popup from '../components/Popup.js';
  import PopupWithImage from '../components/PopupWithImage.js';
  import PopupWithForm from '../components/PopupWithForm.js';
  import UserInfo from '../components/UserInfo.js';
@@ -61,7 +59,8 @@ api.getInitialItem()
   .then(([userItem, cardsItem]) => {
     ownerId = userItem._id;
     userInfo.setUserInfo(userItem);
-    cardsList.renderItems(cardsItem);
+    cardsItem.reverse()
+    .forEach(cardItem => cardList.addItem(createCard(cardItem)))
   })
   .catch((err) => {
     console.log(err);
@@ -86,7 +85,7 @@ function createCard(item) {
   },
     handleDeleteCardClick: () => {
       tempCard = card;
-      PopupWithConfirm.open();
+      popupWithConfirm.open();
     },
     setLike: (item) => {
       api.setLike(item)
@@ -115,7 +114,10 @@ function createCard(item) {
 
 const cardList = new Section({
   renderer: (item) => {
-    cardsList.append(createCard(item));
+    const card = createCard(item);
+    const cardElement = card.generateCard();
+    card.setLikeCount(item);
+    cardList.addItem(cardElement, 'append');
   }
 }, cardsList);
 
@@ -124,10 +126,9 @@ const popupWithImage = new PopupWithImage('.popup_type_image');
 popupWithImage.setEventListeners();
 
 
-const userInfo = new UserInfo('.profile__name', '.profile__description');
+const userInfo = new UserInfo('.profile__name', '.profile__description', '.popup_avatar');
 
 //добавление новой карточки
-
 const addCardPopup = new PopupWithForm('.popup_type_new-card', (item) => {
   addCardPopup.renderLoading(true, 'Сохранение...');
   api.postCard(item)
@@ -146,7 +147,6 @@ const addCardPopup = new PopupWithForm('.popup_type_new-card', (item) => {
 });
 
 //информация о пользователе
-
 const editProfilePopup = new PopupWithForm('.popup_type_edit', (item) => {
     editProfilePopup.renderLoading(true, 'Сохранение...');
     console.log(item);
@@ -164,13 +164,10 @@ const editProfilePopup = new PopupWithForm('.popup_type_edit', (item) => {
   }
 );
 
-//
 
 
 // обновление аватара пользователя
-
-const popupWithUpdateAvatar = new PopupWithForm('.popup-avatar', {
-  submit: (item) => {
+const popupWithUpdateAvatar = new PopupWithForm('.popup_avatar', (item) => {
     popupWithUpdateAvatar.renderLoading(true, 'Сохранение...');
     api.setUserAvatar(item)
     .then((res) => {
@@ -182,6 +179,23 @@ const popupWithUpdateAvatar = new PopupWithForm('.popup-avatar', {
     .finally(() => {
       popupWithUpdateAvatar.renderLoading(false);
       popupWithUpdateAvatar.close();
+    })
+  }
+);
+
+// удаление карточки
+const popupWithConfirm = new PopupWithConfirm('.popup_confirm', {
+  submit: (item) => {
+    api.deleteCard(item)
+    .then(() => {
+      tempCard.deleteCard();
+    })
+    .then(() => {
+      tempCard = null;
+      popupWithConfirm.close();
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
 })

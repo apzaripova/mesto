@@ -5,7 +5,7 @@ export default class Api {
     }
 
     _handleOriginalResponse(res) {
-        if (res.ok) {
+        if (!res.ok) {
             return Promise.reject(`Error: ${res.status}`);
         }
 
@@ -53,8 +53,8 @@ export default class Api {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            name: item.name,
-            link: item.link
+            name: item.title,
+            link: item.linktopicture
           })
         }).then(this._handleOriginalResponse)
       }
