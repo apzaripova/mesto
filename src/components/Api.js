@@ -59,8 +59,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    deleteCard(item) {
-        return fetch(`${this._url}/cards/${item._id}`, {
+    deleteCard(id) {
+        return fetch(`${this._url}/cards/${id}`, {
           method: 'DELETE',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',
@@ -69,8 +69,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    setLike(item) {
-        return fetch(`${this._url}/cards/likes/${item._id}`, {
+    setLike(id) {
+        return fetch(`${this._url}/cards/likes/${id}`, {
           method: 'PUT',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',
@@ -79,8 +79,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    deleteLike(item) {
-        return fetch(`${this._url}/cards/likes/${item._id}`, {
+    deleteLike(id) {
+        return fetch(`${this._url}/cards/likes/${id}`, {
           method: 'DELETE',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',

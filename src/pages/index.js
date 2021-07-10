@@ -43,8 +43,7 @@ const enableValidation = {
   errorClass: 'popup__input_type_error_active'
 };
 
-let tempCard = null;
-let ownerId = null;
+let userId // переменная под id пользователя
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-25',
@@ -57,7 +56,7 @@ const api = new Api({
 
 api.getInitialItem()
   .then(([userItem, cardsItem]) => {
-    ownerId = userItem._id;
+    userId = userItem._id;
     userInfo.setUserInfo(userItem);
     cardsItem.reverse()
     .forEach(cardsItem => cardList.addItem(createCard(cardsItem)))
@@ -71,8 +70,7 @@ const cardList = new Section({
   renderer: (item) => {
     const card = createCard(item);
     const cardElement = card.generateCard();
-    card.setLikeCount(item);
-    cardList.addItem(cardElement, 'append');
+    cardList.addItem(cardElement);
   }
 }, cardsList);
 
@@ -85,7 +83,7 @@ pictureFormValidation.enableValidation();
 
 // функция добавления новой карточки 
 function createCard(item) { 
-  const card = new Card(item, '.card-template', ownerId, {
+  const card = new Card(item, {
     handleCardClick: (item) => {
     popupPicture.src = item.link;
     popupPicture.alt = item.link;
@@ -93,41 +91,33 @@ function createCard(item) {
 
     popupWithImage.open();
   },
+  handleLikeClick: () => {
+    card.handleLikeCard();
+  },
     handleDeleteCardClick: () => {
       popupWithConfirm.setConfirmHandler(() => {
-        api.deleteCard(card._item._id)
+      popupWithConfirm.renderLoadingWhileDeleting(true)
+        api.deleteCard(item._id)
         .then(() => {
-          card.handleDeleteCardClick()
+          card.handleRemoveCard();
           popupWithConfirm.close();
         })
         .catch((err) => {
           console.log(err)
         })
-      })
-    },
-    setLike: (item) => {
-      api.setLike(item)
-      .then((item) => {
-        card.setLikeCount(item);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    },
-    deleteLike: (item) => {
-      api.deleteLike(item)
-      .then((item) => {
-        card.setLikeCount(item);
-      })
-      .catch((err) => {
-        console.log(err);
+        .finally(() => {
+          popupWithConfirm.renderLoadingWhileDeleting(false);
+        })
+        popupWithConfirm.open();
       })
     }
-
-  });
-  
+  },
+  '.card-template',
+  api,
+  userId
+  );
   return card.generateCard();
-};
+  };
 
 
 const popupWithImage = new PopupWithImage('.popup_type_image');
@@ -192,21 +182,8 @@ const popupWithUpdateAvatar = new PopupWithForm('.popup_avatar', (item) => {
 );
 
 // удаление карточки
-const popupWithConfirm = new PopupWithConfirm('.popup_confirm', {
-  submit: (item) => {
-    api.deleteCard(item)
-    .then(() => {
-      tempCard.deleteCard();
-    })
-    .then(() => {
-      tempCard = null;
-      popupWithConfirm.close();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-})
+const popupWithConfirm = new PopupWithConfirm('.popup_confirm');
+popupWithConfirm.setEventListeners();
 
 
 profileButtonEdit.addEventListener('click', () => {
