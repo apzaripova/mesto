@@ -60,11 +60,21 @@ api.getInitialItem()
     ownerId = userItem._id;
     userInfo.setUserInfo(userItem);
     cardsItem.reverse()
-    .forEach(cardItem => cardList.addItem(createCard(cardItem)))
+    .forEach(cardsItem => cardList.addItem(createCard(cardsItem)))
   })
   .catch((err) => {
     console.log(err);
   })
+
+
+const cardList = new Section({
+  renderer: (item) => {
+    const card = createCard(item);
+    const cardElement = card.generateCard();
+    card.setLikeCount(item);
+    cardList.addItem(cardElement, 'append');
+  }
+}, cardsList);
 
 // валидация формы
 const editFormValidation = new FormValidator(enableValidation, popupInfo);
@@ -84,8 +94,16 @@ function createCard(item) {
     popupWithImage.open();
   },
     handleDeleteCardClick: () => {
-      tempCard = card;
-      popupWithConfirm.open();
+      popupWithConfirm.setConfirmHandler(() => {
+        api.deleteCard(card._item._id)
+        .then(() => {
+          card.handleDeleteCardClick()
+          popupWithConfirm.close();
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      })
     },
     setLike: (item) => {
       api.setLike(item)
@@ -110,16 +128,6 @@ function createCard(item) {
   
   return card.generateCard();
 };
-
-
-const cardList = new Section({
-  renderer: (item) => {
-    const card = createCard(item);
-    const cardElement = card.generateCard();
-    card.setLikeCount(item);
-    cardList.addItem(cardElement, 'append');
-  }
-}, cardsList);
 
 
 const popupWithImage = new PopupWithImage('.popup_type_image');

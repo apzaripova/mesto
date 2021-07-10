@@ -1,14 +1,8 @@
 export default class Section {
-    constructor( {renderer}, containerSelector) {
-        this._renderer = renderer;
+    constructor(containerSelector) {
         this._container = containerSelector;
     }
 
-    renderCards(cardsItem) {
-      cardsItem.forEach(card => {
-        this._renderer(card);
-      })
-    }
 
     addItem(domElement, place = 'prepend') {
       if (place === 'append') {
