@@ -21,13 +21,12 @@ export default class Card {
 
     // получение карточки
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);
-        return cardElement;
+        this._element = document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);
     }
 
     // отрисовка карточки 
     generateCard() {
-        this._element = this._getTemplate();
+        this._getTemplate();
         this._setEventListeners();
 
         this._element.querySelector('.card__photo').src = this._link;
@@ -75,6 +74,7 @@ export default class Card {
     // Удаление карточки
     handleRemoveCard() {
         this._element.remove();
+        this._element = null;
     }
 
     // слушатели событий 

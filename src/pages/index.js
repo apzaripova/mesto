@@ -95,22 +95,8 @@ function createCard(item) {
   handleLikeClick: () => {
     card.handleLikeCard();
   },
-    handleDeleteCardClick: () => {
-      popupWithConfirm.setConfirmHandler(() => {
-      popupWithConfirm.renderLoadingWhileDeleting(true)
-        api.deleteCard(item._id)
-        .then(() => {
-          card.handleRemoveCard();
-          popupWithConfirm.close();
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => {
-          popupWithConfirm.renderLoadingWhileDeleting(false);
-        })
-        popupWithConfirm.open();
-      })
+    handleDeleteCardClick: (item) => {
+      popupWithConfirm.open(item);
     }
   },
   '.card-template',
@@ -182,8 +168,19 @@ const popupWithUpdateAvatar = new PopupWithForm('.popup_avatar', (item) => {
   }
 );
 
+popupWithUpdateAvatar.setEventListeners();
+
 // удаление карточки
-const popupWithConfirm = new PopupWithConfirm('.popup_confirm');
+const popupWithConfirm = new PopupWithConfirm('.popup_confirm', () => {
+  api.deleteCard(id)
+  .then(() => {
+    card.handleRemoveCard();
+    popupWithConfirm.close();
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+});
 popupWithConfirm.setEventListeners();
 
 

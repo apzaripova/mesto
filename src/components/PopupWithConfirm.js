@@ -1,16 +1,17 @@
 import Popup from './Popup.js';
 
 export default class PopupWithConfirm extends Popup {
-    constructor(popupSelector) {
+    constructor(popupSelector, handleSubmitCallBack) {
       super(popupSelector);
       this._form = this._popup.querySelector('.popup-form');
+      this._handleSubmitCallback = handleSubmitCallBack;
 
       this._popupButton = this._form.querySelector('.popup__button')
       this._popupButtonTextContent = this._popupButton.textContent
     }
     
-    setConfirmHandler(action) {
-      this._handleSubmitCallback = action;
+    setConfirmHandler(handleSubmitCallBack) {
+      this._handleSubmitCallback = handleSubmitCallBack;
     }
 
     renderLoadingWhileDeleting(isLoading) {

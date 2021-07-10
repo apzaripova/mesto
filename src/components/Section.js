@@ -4,9 +4,9 @@ export default class Section {
         this._container = containerSelector;
     }
 
-    renderCards(cardsItem) {
-      cardsItem.forEach(card => {
-        this._renderer(card);
+    render(arr) {
+      arr.reverse().forEach(item => {
+        this._render(item);
       })
     }
 
