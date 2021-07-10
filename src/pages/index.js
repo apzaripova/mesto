@@ -14,6 +14,7 @@ const popupInputTypeName = document.querySelector('.popup__input_type_name');
 const popupInputTypeJob = document.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
+const popupAvatar = document.querySelector('.popup_avatar');
 const popupInfo = document.querySelector('#profileEdit');
 const popupCard = document.querySelector('#newCard');
 const avatarForm = document.querySelector('#avatarForm');
@@ -84,10 +85,10 @@ pictureFormValidation.enableValidation();
 // функция добавления новой карточки 
 function createCard(item) { 
   const card = new Card(item, {
-    handleCardClick: (item) => {
-    popupPicture.src = item.link;
-    popupPicture.alt = item.link;
-    popupFigcaption.textContent = item.name;
+    handleCardClick: () => {
+      popupPicture.src = item.link;
+      popupPicture.alt = item.link;
+      popupFigcaption.textContent = item.name; 
 
     popupWithImage.open();
   },
@@ -130,10 +131,10 @@ const userInfo = new UserInfo('.profile__name', '.profile__description', '.popup
 const addCardPopup = new PopupWithForm('.popup_type_new-card', (item) => {
   addCardPopup.renderLoading(true, 'Сохранение...');
   api.postCard(item)
-  .then((res) => {
-    const card = createCard(res);
+  .then((item) => {
+    const card = createCard(item);
     const cardElement = card.generateCard();
-    cardsList.addItem(cardElement, 'prepend');
+    cardsList.addItem(cardElement);
   })
   .catch((err) => {
     console.log(err);
@@ -168,15 +169,15 @@ const editProfilePopup = new PopupWithForm('.popup_type_edit', (item) => {
 const popupWithUpdateAvatar = new PopupWithForm('.popup_avatar', (item) => {
     popupWithUpdateAvatar.renderLoading(true, 'Сохранение...');
     api.setUserAvatar(item)
-    .then((res) => {
-      userInfo.setUserAvatar(res);
+    .then((item) => {
+      userInfo.setUserAvatar(item);
+      popupWithUpdateAvatar.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       popupWithUpdateAvatar.renderLoading(false);
-      popupWithUpdateAvatar.close();
     })
   }
 );

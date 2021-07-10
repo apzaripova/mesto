@@ -74,9 +74,7 @@ export default class Card {
 
     // Удаление карточки
     handleRemoveCard() {
-        this._element
-        .closest('.card')
-        .remove();
+        this._element.remove();
     }
 
     // слушатели событий 
@@ -85,7 +83,9 @@ export default class Card {
             this._handleLikeClick();
         });
 
-        this._element.querySelector('.card__button-delete').addEventListener('click', this._handleDeleteCardClick);
+        this._element.querySelector('.card__button-delete').addEventListener('click', () => {
+            this._handleDeleteCardClick();
+        });
 
 
         this._element.querySelector('.card__photo').addEventListener('click', () => { 
