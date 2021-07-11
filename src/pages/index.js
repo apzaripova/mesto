@@ -95,7 +95,22 @@ function createCard(item) {
   handleLikeClick: () => {
     card.handleLikeCard();
   },
-    handleDeleteCardClick: (item) => {
+    handleDeleteCardClick: () => {
+      popupWithConfirm.setConfirmHandler(() => {
+        popupWithConfirm.renderLoadingWhileDeleting(true, 'Удаление...')
+        api.deleteCard(item._id)
+        .then(() => {
+          card.handleRemoveCard();
+          popupWithConfirm.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          popupWithConfirm.renderLoadingWhileDeleting(false);
+        })
+        popupWithConfirm.open();
+      })
       popupWithConfirm.open(item);
     }
   },
@@ -118,9 +133,8 @@ const addCardPopup = new PopupWithForm('.popup_type_new-card', (item) => {
   addCardPopup.renderLoading(true, 'Сохранение...');
   api.postCard(item)
   .then((item) => {
-    const card = createCard(item);
-    const cardElement = card.generateCard();
-    cardsList.addItem(cardElement);
+    const cardElement = createCard(item);
+    cardList.addItem(cardElement);
   })
   .catch((err) => {
     console.log(err);
