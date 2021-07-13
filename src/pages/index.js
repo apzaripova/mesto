@@ -17,7 +17,7 @@ const profileDescription = document.querySelector('.profile__description');
 const popupAvatar = document.querySelector('.popup_avatar');
 const popupInfo = document.querySelector('#profileEdit');
 const popupCard = document.querySelector('#newCard');
-const avatarForm = document.querySelector('#avatarForm');
+const avatarForm = document.querySelector('#avatarUpdate');
 const popupCloseButton = document.querySelector('.popup__close-button');
 const closeCard = document.querySelector('#closeCard')
 const closeImage = document.querySelector('#closeImage');
@@ -81,6 +81,9 @@ editFormValidation.enableValidation();
 
 const pictureFormValidation = new FormValidator(enableValidation, popupCard);
 pictureFormValidation.enableValidation();
+
+const avatarFormValidation = new FormValidator(enableValidation, avatarForm);
+avatarFormValidation.enableValidation();
 
 // функция добавления новой карточки 
 function createCard(item) { 
@@ -202,18 +205,17 @@ profileButtonEdit.addEventListener('click', () => {
   popupInputTypeName.value = profileName.textContent;
   popupInputTypeJob.value = profileDescription.textContent;
 
-  editProfilePopup.open();
-  editFormValidation.enableValidation();
   editFormValidation.resetValidation();
+  editProfilePopup.open();
 })
 
 profileAddButton.addEventListener('click', () => {
-  addCardPopup.open();
-  pictureFormValidation.enableValidation();
   pictureFormValidation.resetValidation();
+  addCardPopup.open();
 })
 
 profileAvatarButton.addEventListener('click', () => {
+  avatarFormValidation.resetValidation();
   popupWithUpdateAvatar.open();
 })
 
