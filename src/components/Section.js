@@ -4,9 +4,9 @@ export default class Section {
         this._container = containerSelector;
     }
 
-    render(arr) {
+    renderer(arr) {
       arr.reverse().forEach(item => {
-        this._render(item);
+        this._renderer(item);
       })
     }
 

@@ -69,8 +69,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    setLike(id) {
-        return fetch(`${this._url}/cards/likes/${id}`, {
+    setLike(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
           method: 'PUT',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',
@@ -79,8 +79,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    deleteLike(id) {
-        return fetch(`${this._url}/cards/likes/${id}`, {
+    deleteLike(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
           method: 'DELETE',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',

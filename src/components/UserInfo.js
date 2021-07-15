@@ -10,13 +10,17 @@ export default class UserInfo {
     }
 
     setUserAvatar(item) {
-        this.avatar.src = item.avatar;
+        if (item.avatar) {
+            this.avatar.src = item.avatar;
+        }
     }
 
     setUserInfo(item) {
-        this.name.textContent = item.name;
-        this.job.textContent = item.about;
-        this.setUserAvatar(item);
-        this.avatar.alt = `${item.name} avatar`;
+        if (item.name, item.about) {
+            this.name.textContent = item.name;
+            this.job.textContent = item.about;
+            this.setUserAvatar(item);
+            this.avatar.alt = `${item.name} avatar`;
+        }
     }
 }
