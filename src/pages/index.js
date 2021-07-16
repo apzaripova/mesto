@@ -96,8 +96,8 @@ function createCard(item) {
   });
   
   const card = new Card(item, {
-    handleCardClick: () => {
-    popupWithImage.open({name: item.name, link: item.link});
+    handleCardClick: (name, link) => {
+    popupWithImage.open(name, link);
   },
 
   handleLikeClick: (cardId, isLiked) => {

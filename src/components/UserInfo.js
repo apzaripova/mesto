@@ -6,7 +6,11 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        return [this.name.textContent, this.job.textContent]
+        return {
+            name: this.name.textContent, 
+            about: this.job.textContent,
+            id: this._id
+        }
     }
 
     setUserAvatar(item) {
@@ -16,11 +20,12 @@ export default class UserInfo {
     }
 
     setUserInfo(item) {
-        if (item.name, item.about) {
+        if (item.name, item.about, item._id) {
             this.name.textContent = item.name;
             this.job.textContent = item.about;
             this.setUserAvatar(item);
             this.avatar.alt = `${item.name} avatar`;
+            this._id = item._id;
         }
     }
 }
