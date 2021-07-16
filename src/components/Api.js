@@ -45,7 +45,7 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    postCard(item) {
+      postCard(item) {
         return fetch(`${this._url}/cards`, {
           method: 'POST',
           headers: {
@@ -53,8 +53,8 @@ export default class Api {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            name: item.title,
-            link: item.linktopicture
+            name: item.name,
+            link: item.link
           })
         }).then(this._handleOriginalResponse)
       }
@@ -69,8 +69,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    setLike(cardId) {
-        return fetch(`${this._url}/cards/likes/${cardId}`, {
+    setLike(id) {
+        return fetch(`${this._url}/cards/likes/${id}`, {
           method: 'PUT',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',
@@ -79,8 +79,8 @@ export default class Api {
         }).then(this._handleOriginalResponse)
       }
 
-    deleteLike(cardId) {
-        return fetch(`${this._url}/cards/likes/${cardId}`, {
+    deleteLike(id) {
+        return fetch(`${this._url}/cards/likes/${id}`, {
           method: 'DELETE',
           headers: {
             authorization: '7756de4b-55ba-47f8-9f76-db9dfc9e3dd4',

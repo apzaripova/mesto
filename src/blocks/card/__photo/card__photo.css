@@ -5,3 +5,7 @@
     padding: 0;
 }
 
+.card__photo:hover {
+  cursor: pointer;
+}
+

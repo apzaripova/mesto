@@ -86,21 +86,20 @@ const avatarFormValidation = new FormValidator(enableValidation, avatarForm);
 avatarFormValidation.enableValidation();
 
 // функция добавления новой карточки 
-function createCard(item) { 
+function createCard(item) {
+
   const currentUserId = userInfo.getUserInfo().id;
 
   item.isOwner = (item.owner._id === currentUserId);
   item.isLiked = item.likes.some((like) => {
     return like._id === currentUserId;
   });
+  
   const card = new Card(item, {
     handleCardClick: () => {
-      popupPicture.src = item.link;
-      popupPicture.alt = item.link;
-      popupFigcaption.textContent = item.name; 
-
-    popupWithImage.open();
+    popupWithImage.open({name: item.name, link: item.link});
   },
+
   handleLikeClick: (cardId, isLiked) => {
     if (isLiked) {
       api.deleteLike(cardId)
@@ -135,17 +134,17 @@ function createCard(item) {
           popupWithConfirm.renderLoadingWhileDeleting(false);
         })
       })
-      popupWithConfirm.open(item);
+      popupWithConfirm.open();
     }
-  },
-  '.card-template',);
+  }, 
+  '.card-template',
+  userId);
 
   return card.generateCard();
   };
 
 
 const popupWithImage = new PopupWithImage('.popup_type_image');
-popupWithImage.setEventListeners();
 
 
 const userInfo = new UserInfo('.profile__name', '.profile__description', '.profile__avatar');
@@ -205,20 +204,8 @@ const popupWithUpdateAvatar = new PopupWithForm('.popup_avatar', (item) => {
   avatarFormValidation
 );
 
-popupWithUpdateAvatar.setEventListeners();
-
 // удаление карточки
-const popupWithConfirm = new PopupWithConfirm('.popup_confirm', () => {
-  api.deleteCard(id)
-  .then(() => {
-    card.handleRemoveCard();
-    popupWithConfirm.close();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-});
-popupWithConfirm.setEventListeners();
+const popupWithConfirm = new PopupWithConfirm('.popup_confirm');
 
 
 profileButtonEdit.addEventListener('click', () => {
@@ -241,3 +228,6 @@ profileAvatarButton.addEventListener('click', () => {
 
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
+popupWithUpdateAvatar.setEventListeners();
+popupWithConfirm.setEventListeners();
+popupWithImage.setEventListeners();

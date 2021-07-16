@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(item, {handleCardClick, handleLikeClick, handleDeleteCard}, cardSelector) {
+    constructor(item, {handleCardClick, handleLikeClick, handleDeleteCard}, cardSelector, userId) {
         this._name = item.name;
         this._link = item.link;
         this._likes = item.likes;
@@ -8,6 +8,7 @@ export default class Card {
 
         this._id = item._id; // id карточки
         this._ownerId = item.owner._id; // id создателя карточки
+        this._userId = userId; // id текущего пользователя
 
         this._isOwner = item.isOwner;
         this._isLiked = item.isLiked;
@@ -33,16 +34,16 @@ export default class Card {
         cardPhoto.src = this._link;
         this._element.querySelector('.card__title').textContent = this._name;
         cardPhoto.alt = this._name;
+
         this._cardLikes.textContent = this._likes.length;
-
-        if (!this._isOwner) {
-          this._element.querySelector('.card__button-delete').classList.add('card__button-delete_hidden');
+    
+        if(!(this._ownerId === this._userId)) {
+          this._element.querySelector('.card__button-delete').style.display = 'none'
         }
-
-          if (this._isLiked) {
-            this._renderLike();
-          }
-
+        
+        if (this._isLiked) {
+          this._renderLike();
+        }
         return this._element;
   }
 
@@ -62,6 +63,7 @@ export default class Card {
   
       this._isLiked = !this._isLiked;
     }
+  
 
     // Удаление карточки
     handleRemoveCard() {
@@ -73,6 +75,7 @@ export default class Card {
     _setEventListeners() {
       this._element.querySelector('.card__button-like').addEventListener('click', () => {
         this._handleLikeClick(this._id, this._isLiked);
+  
       });
 
         this._element.querySelector('.card__button-delete').addEventListener('click', () => {
@@ -81,7 +84,7 @@ export default class Card {
 
 
         this._element.querySelector('.card__photo').addEventListener('click', () => { 
-            this._handleCardClick();
+            this._handleCardClick(this._name, this._link);
         });
 }
 }
