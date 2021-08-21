@@ -11,5 +11,5 @@
 4. Webpack
 5. API
 
-### Адрес страницы https://apzaripova.github.io/mesto/
+
 
